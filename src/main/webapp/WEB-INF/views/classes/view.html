@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View class</title>
+</head>
+<body>
+    <h1>View class:<span th:text="${classes.name}"></span></h1>
+    <a href="/classes"> Class list</a>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Birthday</th>
+        </tr>
+        <th:block th:each="s : ${students}">
+            <tr>
+                <td th:text="${s.name}"></td>
+                <td th:text="${s.image}"></td>
+                <td th:text="${s.birthday}"></td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+</html>

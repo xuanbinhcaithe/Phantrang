@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Student</title>
+</head>
+    <body>
+    <h1 align>List Student</h1>
+    <form>
+        Search by first name:
+        <input name="s" type="text" >
+            <input type="submit" value="Search">
+    </form><br>
+    <p align>
+        <a href="/create-student"> Creat new student</a>
+    </p>
+    <div>
+        <a th:href="@{'/customers'(page=${students.number - 1})}" th:if="${students.hasPrevious()}">Previous</a>
+        <span th:text="${students.number + 1}"></span>/<span th:text="${students.totalPages}"></span>
+        <a th:href="@{'/customers'(page=${students.number + 1})}" th:if="${students.hasNext()}">Next</a>
+    </div>
+    <table border="1" >
+        <tr>
+            <th>Name</th>
+            <th>Birthday</th>
+            <th>Image</th>
+            <th>Class</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <th:block th:each="student : ${students}" >
+            <tr>
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.birthday}"></td>
+                <td th:text="${student.image}"></td>
+                <td th:text="${student.classes.name}"></td>
+                <td><a th:href="@{/edit-student/__${student.getId()}__}">Edit</a></td>
+                <td><a th:href="@{/delete-student/__${student.getId()}__}">Delete</a></td>
+            </tr>
+        </th:block>
+    </table>
+
+</body>
+</html>
